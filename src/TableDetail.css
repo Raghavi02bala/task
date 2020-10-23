@@ -1,0 +1,7 @@
+.head{
+    display: flex;
+    margin-top: 20px;
+}
+.head > h1{
+    margin-left: 30px;
+}

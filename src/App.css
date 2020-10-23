@@ -1,0 +1,23 @@
+*{
+  margin: 0;
+  font-family: 'Chilanka', cursive;
+}
+.search{
+  padding: 20px;
+}
+.users{
+  padding: 20px;
+}
+.td_first{
+  cursor: pointer;
+}
+.link{
+  cursor: pointer;
+  border: 0.2px solid #2d7efb;
+  padding: 10px;
+}
+.link:hover{
+  cursor: pointer;
+  background-color: #1261a0;
+  color: white;
+}

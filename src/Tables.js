@@ -2,8 +2,7 @@ import React, { useContext, useState } from 'react'
 import * as ReactBootStrap from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from './context';
-import { AiFillCaretDown } from "react-icons/ai";
-import { AiFillCaretUp } from "react-icons/ai";
+import orderBy from 'lodash/orderBy';
 
 
 const Tables = () => {
@@ -11,6 +10,8 @@ const Tables = () => {
     const user = useContext(UserContext);
     let history = useHistory();
 
+    const [columnToSort, setColumnToSort] = useState('');
+    const [sortDirection, setSortDirection] = useState('desc');
 
     const [q, setQ] = useState("");
     function search(rows) {
@@ -24,8 +25,16 @@ const Tables = () => {
         history.push("/details");
     }
 
+
     if (user.loading) {
         return <h2>Loading...</h2>;
+    }
+
+    function handleSort(field) {
+        setColumnToSort(field);
+        if(columnToSort){
+            setSortDirection('asc')
+        }
     }
 
     return (
@@ -39,14 +48,17 @@ const Tables = () => {
                     <thead>
                         <tr>
                             {
-                                user.header.map(head => (
-                                    <th key={head.field}>{head.name}</th>
+                                user.header.map(({ field, name }) => (
+                                    <th key={field} onClick={ () => handleSort(field)} >{name}</th>
                                 ))
                             }
                         </tr>
                     </thead>
                     <tbody>
-                        {search(user.currentDetails).map(details => <tr key={details.id}>
+                        {search(orderBy(
+                            user.currentDetails, 
+                            columnToSort, 
+                            sortDirection)).map(details => <tr key={details.id}>
                             <td
                                 onClick={handleClick}
                                 className="td_first"

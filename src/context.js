@@ -22,8 +22,6 @@ export const UserContextProvider = ({ children }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [detailsPerPage] = useState(20);
 
-    const [sorting, setSorting] = useState({field:"", order:""})
-
     const header = [
         { name: "First Name", field: "first" },
         { name: "Last Name", field: "last" },

@@ -19,7 +19,7 @@ const Tables = () => {
             row.last_name.toLowerCase().indexOf(q) > -1
         );
     }
-    
+
     function handleClick() {
         history.push("/details");
     }
@@ -38,11 +38,11 @@ const Tables = () => {
                 <ReactBootStrap.Table striped bordered hover>
                     <thead>
                         <tr>
-                            <th>First Name &nbsp;&nbsp; <AiFillCaretDown/> <AiFillCaretUp/></th>
-                            <th>Last Name &nbsp;&nbsp; </th>
-                            <th>Age &nbsp;&nbsp; </th>
-                            <th>Email &nbsp;&nbsp;</th>
-                            <th>Website &nbsp;&nbsp;</th>
+                            {
+                                user.header.map(head => (
+                                    <th key={head.field}>{head.name}</th>
+                                ))
+                            }
                         </tr>
                     </thead>
                     <tbody>

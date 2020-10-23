@@ -22,6 +22,16 @@ export const UserContextProvider = ({ children }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [detailsPerPage] = useState(20);
 
+    const [sorting, setSorting] = useState({field:"", order:""})
+
+    const header = [
+        { name: "First Name", field: "first" },
+        { name: "Last Name", field: "last" },
+        { name: "Age", field: "age" },
+        { name: "Email", field: "email" },
+        { name: "Website", field: "web" }
+    ]
+
     const indexofLastDetail = currentPage * detailsPerPage;
     const indexofFirstDetail = indexofLastDetail - detailsPerPage;
     const currentDetails = details.slice(indexofFirstDetail, indexofLastDetail);
@@ -30,7 +40,7 @@ export const UserContextProvider = ({ children }) => {
 
     return (
         <UserContext.Provider
-            value={{ details, detailsPerPage, loading, currentDetails, paginate, totalDetails, currentPage}}
+            value={{ details, header, detailsPerPage, loading, currentDetails, paginate, totalDetails, currentPage}}
         >
             {children}
         </UserContext.Provider>
